@@ -12,22 +12,39 @@ char jobs[JOB_COUNT][MAX_LENGTH] = {
     "System Support"
 };
 
+
+
+
+void background_images()
+{
+	readimagefile("C:\\Users\\user\\OneDrive\\Documents\\Ball Catcher\\converted_image.bmp", 0 ,0 , 1200 , 700);
+}
+
 void drawScreen(const char input[]) {
     // Set background to white
-    setbkcolor(WHITE);
-    cleardevice();
-
+   
+  background_images();
+  
     // Title
-    setcolor(BLACK);
-    settextstyle(3, 0, 6); // Font for "JOBIFY"
-    outtextxy(450, 50, "JOBIFY");
+  
+    settextstyle(DEFAULT_FONT, HORIZ_DIR, 7);        
+    setcolor(WHITE);
+    // Font for "JOBIFY"
+        setfillstyle(SOLID_FILL, LIGHTGRAY);
+    bar(435     , 55 ,780  ,111);
+    outtextxy(440, 50, (char*)"JOBIFY");
 
     // Search Box
-    setcolor(BLACK);
-    rectangle(400, 150, 1000, 200); // Search bar outline
-
-    settextstyle(0, 0, 2);
-    outtextxy(410, 165, input   ); // User input shown here
+    setcolor(WHITE);
+    rectangle(320, 200, 1000, 240); 
+    
+    setfillstyle(SOLID_FILL, BLACK);
+    bar(321, 201, 999, 239); 
+    
+     // User input shown here
+     setcolor(WHITE);
+    settextstyle(SIMPLEX_FONT, HORIZ_DIR, 2); // Only one settextstyle needed
+    outtextxy(340, 210, (char*)input);
 }
 
 void showResults(const char input[]) {
@@ -43,20 +60,22 @@ void showResults(const char input[]) {
         for (int j = 0; tempInput[j]; j++) tempInput[j] = tolower(tempInput[j]);
 
         if (strstr(tempJob, tempInput)) {
-            outtextxy(420, y, jobs[i]); // Display the matching job
+            outtextxy(350, y, jobs[i]); // Display the matching job
             y += 30;
             found = true;
         }
     }
 
     if (!found) {
-        outtextxy(420, y, "No matching jobs found."); // Message if no jobs match
+    	setcolor(RED);
+    	 settextstyle(SIMPLEX_FONT, HORIZ_DIR, 3); 
+        outtextxy(450, y + 100, (char*)"No matching jobs found."); // Message if no jobs match
     }
 }
 
 int main() {
-    int gd = DETECT, gm;
-    initgraph(&gd, &gm, "");
+   initwindow(1200 , 700  , (char*)" JOBIFY ");
+   background_images();
 
     char input[MAX_LENGTH] = "";
     int index = 0;
@@ -86,5 +105,5 @@ int main() {
 
     getch();
     closegraph();
-    return 0;
+    return 0;
 }
