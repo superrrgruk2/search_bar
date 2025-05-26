@@ -13,11 +13,19 @@ char jobs[JOB_COUNT][MAX_LENGTH] = {
 };
 
 
-
+void give_coordinate() {
+	int x , y;
+    while (!kbhit()) {
+        if (ismouseclick(WM_LBUTTONDOWN)) {
+            getmouseclick(WM_LBUTTONDOWN, x, y);
+            printf("%d \t %d \n", x, y);
+        }
+    }
+}
 
 void background_images()
 {
-	readimagefile("C:\\Users\\user\\OneDrive\\Documents\\Ball Catcher\\converted_image.bmp", 0 ,0 , 1200 , 700);
+	readimagefile("C:\\Users\\nisha\\Downloads\\Searche.bmp", 0 ,0 , 1200 , 700);
 }
 
 void drawScreen(const char input[]) {
@@ -105,5 +113,5 @@ int main() {
 
     getch();
     closegraph();
-    return 0;
+    return 0;
 }
