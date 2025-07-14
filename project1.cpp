@@ -697,7 +697,7 @@ void mainMenu() {
         else if (isClicked(650, 420, 300, 60, mx, my))
             running = false;
     }
-}
+}   
 
 int main() {
     initwindow(screenWidth, screenHeight, "Job Vacancy Platform");
